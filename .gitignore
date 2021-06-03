@@ -1,0 +1,11 @@
+build/
+.gradle
+.idea
+gradle/
+common-kafka/build/
+service-email/build/
+service-fraud-detector/build/
+service-log/build/
+service-new-order/build/
+service-users/build/
+users_database.db
