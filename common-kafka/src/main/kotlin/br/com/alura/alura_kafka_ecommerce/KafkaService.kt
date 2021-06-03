@@ -44,22 +44,34 @@ private constructor(
             consumer
                 .poll(Duration.ofMillis(100))
                 .takeUnless { it.isEmpty }
-                ?.also { println("Founded ${it.count()} records") }
+                ?.also { println("\n\nFounded ${it.count()} records") }
                 ?.forEach {
-                    println("-----------------------------------------")
-                    logInfo(it)
-                    parse(it.key(), it.value())
-                    println("-----------------------------------------")
+                    it.topic().wrap {
+                        it.logAbout()
+                        parse(it.key(), it.value())
+                    }
                 }
         }
     }
 
-    private fun logInfo(it: ConsumerRecord<String, T>) {
-        println("Key: ${it.key()}")
-        println("Value: ${it.value()}")
-        println("Partition: ${it.partition()}")
-        println("Offset: ${it.offset()}")
+    private fun String.wrap(body: () -> Unit) {
+        println(this.surroundWithDashes())
+        body()
+        println(this.length.dashes().surroundWithDashes())
     }
+
+    private fun String.surroundWithDashes() = 12.dashes() + this + 12.dashes()
+    private fun Int.dashes() = "-".repeat(this)
+
+    private fun ConsumerRecord<String, T>.logAbout() =
+        println(
+            """
+        Key:       ${key()}
+        Value:     ${value()}
+        Partition: ${partition()}
+        Offset:    ${offset()}
+    """.trimIndent()
+        )
 
     private fun properties(overrideProperties: Map<String, Any>) =
         Properties().apply {
@@ -73,7 +85,5 @@ private constructor(
             putAll(overrideProperties)
         }
 
-    override fun close() {
-        consumer.close()
-    }
+    override fun close() = consumer.close()
 }

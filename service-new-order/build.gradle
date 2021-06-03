@@ -9,4 +9,7 @@ repositories {
 dependencies {
     implementation(project(":common-kafka"))
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    // https://mvnrepository.com/artifact/com.sparkjava/spark-kotlin
+    implementation "com.sparkjava:spark-kotlin:1.0.0-alpha"
 }

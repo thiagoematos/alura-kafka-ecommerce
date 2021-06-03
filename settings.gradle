@@ -1,2 +1,4 @@
 rootProject.name = "alura-kafka-ecommerce"
-include("service-new-order","common-kafka", "service-log", "service-email", "service-fraud-detector")
+include("service-new-order", "common-kafka", "service-log", "service-email", "service-fraud-detector")
+include 'service-users'
+

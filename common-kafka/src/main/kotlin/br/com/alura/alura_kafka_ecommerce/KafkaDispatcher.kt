@@ -29,6 +29,7 @@ class KafkaDispatcher<T> : Closeable {
             setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092")
             setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java.name)
             setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, GsonSerializer::class.java.name)
+            setProperty(ProducerConfig.ACKS_CONFIG, "all")
         }
 
     override fun close() {

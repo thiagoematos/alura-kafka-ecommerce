@@ -1,1 +1,0 @@
-/home/inv-tmatos/Codes/alura-kafka-ecommerce/service-log/build/classes/kotlin/main/br/com/alura/alura_kafka_ecommerce/LogServiceKt$main$1.class:/home/inv-tmatos/Codes/alura-kafka-ecommerce/service-log/build/classes/kotlin/main/br/com/alura/alura_kafka_ecommerce/LogServiceKt.class
